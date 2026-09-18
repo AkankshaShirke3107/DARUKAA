@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { evidenceSources, retrievalQuery, type EvidenceSource } from '@/data/mock-evidence';
+import { evidenceSources as mockEvidence, retrievalQuery, type EvidenceSource } from '@/data/mock-evidence';
 import { Search, ExternalLink, X } from 'lucide-react';
+import { useAssessment } from '@/context/AssessmentContext';
+import { listEvidence } from '@/lib/api';
 
 const categories = ['all', 'soil', 'climate', 'biodiversity', 'land', 'human-impact'] as const;
 
@@ -152,9 +154,29 @@ function EvidenceDrawer({
 }
 
 export default function KnowledgePage() {
+  const { result, backendAvailable } = useAssessment();
   const [filter, setFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState(retrievalQuery);
   const [selectedEvidence, setSelectedEvidence] = useState<EvidenceSource | null>(null);
+  const [apiEvidence, setApiEvidence] = useState<EvidenceSource[] | null>(null);
+
+  // Fetch evidence from API when filter changes
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchEvidence() {
+      try {
+        const data = await listEvidence({ category: filter === 'all' ? undefined : filter }) as EvidenceSource[];
+        if (!cancelled) setApiEvidence(data);
+      } catch {
+        if (!cancelled) setApiEvidence(null);
+      }
+    }
+    fetchEvidence();
+    return () => { cancelled = true; };
+  }, [filter]);
+
+  // Use API evidence first, then context evidence, then mock
+  const evidenceSources = apiEvidence || (backendAvailable && result?.evidence?.length ? result.evidence as EvidenceSource[] : mockEvidence);
 
   const filtered =
     filter === 'all'

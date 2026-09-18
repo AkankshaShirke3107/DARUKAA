@@ -6,6 +6,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import LoadingState from '@/components/ui/LoadingState';
 import { demoAssessment, ecosystemTypes, landUseTypes, analysisSteps } from '@/data/mock-assessment';
 import type { AssessmentInput } from '@/data/mock-assessment';
+import { useAssessment } from '@/context/AssessmentContext';
+import { analyzeAssessment } from '@/lib/api';
 
 function FormField({
   label,
@@ -35,8 +37,10 @@ function FormSection({ title, children }: { title: string; children: React.React
 
 export default function AssessmentPage() {
   const router = useRouter();
+  const { setResult, setBackendAvailable } = useAssessment();
   const [form, setForm] = useState<AssessmentInput>(demoAssessment);
   const [analysing, setAnalysing] = useState(false);
+  const [apiCalled, setApiCalled] = useState(false);
 
   const updateField = (section: keyof AssessmentInput, field: string, value: string) => {
     setForm((prev) => ({
@@ -45,9 +49,54 @@ export default function AssessmentPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setAnalysing(true);
+
+    // Build API request from form data
+    const apiPayload = {
+      location: {
+        region: form.location.region || undefined,
+        latitude: form.location.latitude ? parseFloat(form.location.latitude) : undefined,
+        longitude: form.location.longitude ? parseFloat(form.location.longitude) : undefined,
+        ecosystem_type: form.location.ecosystemType || undefined,
+      },
+      soil: {
+        ph: form.soil.ph ? parseFloat(form.soil.ph) : undefined,
+        organic_carbon: form.soil.organicCarbon ? parseFloat(form.soil.organicCarbon) : undefined,
+        moisture: form.soil.moisture || undefined,
+        nitrogen: form.soil.nitrogen ? parseFloat(form.soil.nitrogen) : undefined,
+        phosphorus: form.soil.phosphorus ? parseFloat(form.soil.phosphorus) : undefined,
+      },
+      climate: {
+        rainfall: form.climate.rainfall ? parseFloat(form.climate.rainfall) : undefined,
+        temperature: form.climate.temperature ? parseFloat(form.climate.temperature) : undefined,
+        seasonality: form.climate.seasonality || undefined,
+      },
+      land: {
+        land_use: form.land.landUse || undefined,
+        crop: form.land.crop || undefined,
+        habitat_diversity: form.land.habitatDiversity || undefined,
+        fragmentation: form.land.fragmentation || undefined,
+      },
+      biodiversity: {
+        species_richness: form.biodiversity.speciesRichness || undefined,
+        pollinator_presence: form.biodiversity.pollinatorPresence || undefined,
+        native_vegetation: form.biodiversity.nativeVegetation ? parseFloat(form.biodiversity.nativeVegetation) : undefined,
+      },
+    };
+
+    try {
+      const result = await analyzeAssessment(apiPayload) as any;
+      setResult(result);
+      setBackendAvailable(true);
+      setApiCalled(true);
+    } catch {
+      // Backend unavailable — fall back to mock data
+      setResult(null);
+      setBackendAvailable(false);
+      setApiCalled(true);
+    }
   };
 
   const handleAnalysisComplete = () => {

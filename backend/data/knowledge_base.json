@@ -1,0 +1,322 @@
+[
+  {
+    "document_id": "EVD-001",
+    "title": "Global Soil Organic Carbon Map — Technical Report",
+    "source": "FAO / ITPS",
+    "year": 2019,
+    "authors": "FAO and Intergovernmental Technical Panel on Soils",
+    "topic": "Soil Health",
+    "environmental_variables": ["soil_organic_carbon", "soil_moisture", "biodiversity", "land_use"],
+    "evidence_type": "technical_report",
+    "category": "soil",
+    "text_chunks": [
+      "Soil organic carbon (SOC) is the largest terrestrial carbon pool, storing approximately 1500 Gt C in the top 1 m. SOC plays a critical role in soil fertility, water retention, and biological activity. Declines in SOC below 1% in agricultural soils are associated with reduced structural stability and diminished ecosystem service provision.",
+      "Semi-arid agricultural systems are particularly vulnerable to SOC loss due to high temperatures accelerating decomposition, limited organic matter inputs from vegetation, and conventional tillage practices that expose organic matter to oxidation.",
+      "Land management practices including cover cropping, reduced tillage, and organic amendments have demonstrated capacity to increase SOC stocks. Meta-analyses indicate SOC increases of 0.2–0.5% over 5–10 year periods under improved management in semi-arid regions."
+    ]
+  },
+  {
+    "document_id": "EVD-002",
+    "title": "Climate Change and Land: An IPCC Special Report",
+    "source": "IPCC",
+    "year": 2019,
+    "authors": "Intergovernmental Panel on Climate Change",
+    "topic": "Climate Adaptation",
+    "environmental_variables": ["temperature", "rainfall", "land_degradation", "soil_organic_carbon"],
+    "evidence_type": "assessment_report",
+    "category": "climate",
+    "text_chunks": [
+      "Land–climate interactions involve multiple feedback mechanisms. Land degradation reduces vegetation cover, increasing albedo and reducing evapotranspiration, which can affect local and regional precipitation patterns.",
+      "Climate change is projected to intensify rainfall variability in semi-arid regions, increasing the frequency of both drought and extreme rainfall events. This variability threatens soil stability and agricultural productivity.",
+      "Sustainable land management can contribute to both climate change mitigation and adaptation. Practices that increase soil organic carbon simultaneously improve soil water holding capacity and resilience to climate extremes."
+    ]
+  },
+  {
+    "document_id": "EVD-003",
+    "title": "Global Assessment Report on Biodiversity and Ecosystem Services",
+    "source": "IPBES",
+    "year": 2019,
+    "authors": "Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services",
+    "topic": "Biodiversity Assessment",
+    "environmental_variables": ["species_richness", "habitat_diversity", "pollinator_presence", "land_use"],
+    "evidence_type": "assessment_report",
+    "category": "biodiversity",
+    "text_chunks": [
+      "Agricultural intensification is among the leading drivers of biodiversity loss globally. Conversion of natural habitats to monoculture agriculture reduces species richness, simplifies food webs, and eliminates ecological niches essential for many organisms.",
+      "Pollinator populations have declined significantly in agricultural landscapes with reduced floral diversity. The loss of non-crop flowering plants during periods outside crop bloom creates temporal resource gaps that threaten pollinator persistence.",
+      "Habitat fragmentation reduces effective habitat area, isolates populations, limits gene flow, and increases extinction risk. Small, isolated habitat patches support fewer species and are more vulnerable to stochastic events."
+    ]
+  },
+  {
+    "document_id": "EVD-004",
+    "title": "Diversification practices reduce organic nitrogen losses across agricultural landscapes",
+    "source": "Proceedings of the National Academy of Sciences",
+    "year": 2021,
+    "authors": "Bowles, T.M. et al.",
+    "topic": "Crop Diversification",
+    "environmental_variables": ["crop_diversity", "soil_organic_carbon", "soil_moisture", "biodiversity"],
+    "evidence_type": "field_study",
+    "category": "land",
+    "text_chunks": [
+      "Diversified cropping systems, including crop rotations and intercropping, have been demonstrated to increase soil organic carbon accumulation compared to monoculture systems. This effect is attributed to diverse root architectures, varied organic matter inputs, and enhanced soil microbial communities.",
+      "Field trials across multiple agro-ecological zones show that crop diversification reduces nitrogen losses while maintaining or improving yields. Diverse root systems improve soil structure and water infiltration.",
+      "Intercropping with legumes can provide biological nitrogen fixation, reducing dependency on synthetic fertilizers while improving soil biological activity and supporting ground-dwelling invertebrate communities."
+    ]
+  },
+  {
+    "document_id": "EVD-005",
+    "title": "Wild Pollinators Enhance Fruit Set of Crops Regardless of Honey Bee Abundance",
+    "source": "Science",
+    "year": 2013,
+    "authors": "Garibaldi, L.A. et al.",
+    "topic": "Pollination Services",
+    "environmental_variables": ["pollinator_presence", "crop_yield", "native_vegetation", "habitat_diversity"],
+    "evidence_type": "meta_analysis",
+    "category": "biodiversity",
+    "text_chunks": [
+      "Analysis of 41 crop systems worldwide demonstrates that wild insect pollinator visitation enhances fruit set regardless of managed honeybee abundance. Wild pollinators provide complementary pollination services that cannot be fully replaced by managed species.",
+      "Pollinator diversity and abundance are positively correlated with the proportion of semi-natural habitat within the surrounding landscape. Agricultural landscapes retaining at least 20-30% semi-natural habitat typically support adequate pollinator communities.",
+      "Monoculture landscapes with limited floral resources outside crop flowering periods show significantly reduced wild pollinator diversity and abundance compared to diversified agricultural landscapes."
+    ]
+  },
+  {
+    "document_id": "EVD-006",
+    "title": "Habitat Fragmentation and Its Lasting Impact on Earth's Ecosystems",
+    "source": "Science Advances",
+    "year": 2015,
+    "authors": "Haddad, N.M. et al.",
+    "topic": "Habitat Fragmentation",
+    "environmental_variables": ["fragmentation", "species_richness", "habitat_connectivity", "biodiversity"],
+    "evidence_type": "meta_analysis",
+    "category": "biodiversity",
+    "text_chunks": [
+      "A global synthesis of fragmentation experiments reveals that habitat fragmentation reduces species richness by 13–75% and disrupts ecosystem functions including decomposition, nutrient cycling, and trophic interactions.",
+      "Fragment size and isolation are the strongest predictors of species loss. Species with large home ranges, low population densities, and limited dispersal capacity are disproportionately affected by fragmentation.",
+      "Ecological corridors connecting habitat fragments can partially mitigate fragmentation effects by enabling species movement, gene flow, and recolonization of local extinction events. Corridor effectiveness depends on width, habitat quality, and matrix permeability."
+    ]
+  },
+  {
+    "document_id": "EVD-007",
+    "title": "Soil biodiversity and soil community composition determine ecosystem multifunctionality",
+    "source": "Nature Communications",
+    "year": 2014,
+    "authors": "Wagg, C. et al.",
+    "topic": "Soil Microbiology",
+    "environmental_variables": ["soil_moisture", "soil_biology", "nutrient_cycling", "soil_organic_carbon"],
+    "evidence_type": "field_study",
+    "category": "soil",
+    "text_chunks": [
+      "Soil microbial diversity is a key driver of ecosystem multifunctionality, including nutrient cycling, decomposition, plant growth promotion, and disease suppression. Reductions in soil microbial diversity lead to measurable declines in multiple ecosystem functions simultaneously.",
+      "Soil moisture is a primary regulator of microbial community composition and activity. Drought conditions shift microbial communities toward stress-tolerant taxa with reduced functional diversity, diminishing soil nutrient cycling capacity.",
+      "Soil organic carbon provides the energy substrate for soil biological communities. SOC depletion below critical thresholds leads to cascading declines in microbial biomass, enzymatic activity, and the soil food web complexity that supports above-ground biodiversity."
+    ]
+  },
+  {
+    "document_id": "EVD-008",
+    "title": "Field margins as substitutes for semi-natural habitat for farmland biodiversity",
+    "source": "Journal of Applied Ecology",
+    "year": 2018,
+    "authors": "Hass, A.L. et al.",
+    "topic": "Landscape Ecology",
+    "environmental_variables": ["native_vegetation", "biodiversity", "habitat_diversity", "pollinator_presence"],
+    "evidence_type": "field_study",
+    "category": "land",
+    "text_chunks": [
+      "Sown wildflower strips and managed field margins in agricultural landscapes support significantly higher invertebrate diversity and abundance compared to crop-only landscapes. Margins of 3–6 m width are sufficient to provide habitat for many farmland species.",
+      "Field margin vegetation strips function as ecological corridors, facilitating movement of invertebrates, small mammals, and birds between habitat patches. This connectivity function is especially important in landscapes with high habitat fragmentation.",
+      "Native vegetation strips adjacent to agricultural fields provide ecosystem services including natural pest regulation, pollination support, and soil erosion control. These services can partially offset the productive area lost to margin establishment."
+    ]
+  },
+  {
+    "document_id": "EVD-009",
+    "title": "State of the Global Climate 2023",
+    "source": "World Meteorological Organization",
+    "year": 2024,
+    "authors": "World Meteorological Organization",
+    "topic": "Climate Variability",
+    "environmental_variables": ["rainfall", "temperature", "drought", "seasonality"],
+    "evidence_type": "observational",
+    "category": "climate",
+    "text_chunks": [
+      "Global mean temperature in 2023 was approximately 1.45°C above pre-industrial levels. Compound climate extremes including concurrent heat and drought events are increasing in frequency and severity.",
+      "Precipitation variability has intensified in many regions, with semi-arid areas experiencing both more frequent droughts and more intense rainfall events. This variability challenges agricultural planning and ecosystem stability.",
+      "Water stress affects an estimated 3.6 billion people globally for at least one month per year. Agricultural systems in semi-arid regions face increasing pressure from reduced water availability and higher evaporative demand."
+    ]
+  },
+  {
+    "document_id": "EVD-010",
+    "title": "Soil health indicators and their potential for assessing soil ecosystem services",
+    "source": "Ecological Indicators",
+    "year": 2020,
+    "authors": "Bünemann, E.K. et al.",
+    "topic": "Ecosystem Assessment",
+    "environmental_variables": ["soil_organic_carbon", "biodiversity", "soil_biology", "soil_moisture"],
+    "evidence_type": "review",
+    "category": "soil",
+    "text_chunks": [
+      "Soil health is defined as the continued capacity of soil to function as a vital living ecosystem that sustains plants, animals, and humans. Key indicators include soil organic carbon, biological activity, water holding capacity, and structural stability.",
+      "Integrated assessment approaches that combine physical, chemical, and biological soil indicators provide more reliable ecosystem health evaluations than single-metric assessments. SOC, microbial biomass, and water-stable aggregates are among the most informative indicators.",
+      "Threshold values for soil health indicators are ecosystem-specific. In semi-arid agricultural systems, SOC below 0.5% is generally associated with significantly reduced soil biological activity and ecosystem service provision."
+    ]
+  },
+  {
+    "document_id": "EVD-011",
+    "title": "Agroforestry — a multifunctional land-use approach",
+    "source": "FAO",
+    "year": 2017,
+    "authors": "FAO Forestry Division",
+    "topic": "Agroforestry",
+    "environmental_variables": ["land_use", "biodiversity", "soil_organic_carbon", "habitat_diversity"],
+    "evidence_type": "technical_report",
+    "category": "land",
+    "text_chunks": [
+      "Agroforestry systems that integrate trees with crops or livestock can increase above-ground and below-ground biodiversity compared to monoculture agriculture. Tree components provide habitat structure, microclimatic moderation, and nutrient cycling benefits.",
+      "Soil organic carbon stocks under agroforestry are typically higher than under conventional agriculture due to continuous litter inputs, deep root systems, and reduced soil disturbance. SOC accumulation rates vary with tree species, density, and management.",
+      "Agroforestry can improve water-use efficiency through reduced evaporative losses, improved soil infiltration, and hydraulic lift by deep-rooted trees. These hydrological benefits are particularly valuable in water-limited environments."
+    ]
+  },
+  {
+    "document_id": "EVD-012",
+    "title": "Cover Crops and Ecosystem Services: A Synthesis",
+    "source": "Agronomy Journal",
+    "year": 2015,
+    "authors": "Blanco-Canqui, H. et al.",
+    "topic": "Cover Cropping",
+    "environmental_variables": ["soil_organic_carbon", "soil_moisture", "soil_biology", "water_availability"],
+    "evidence_type": "review",
+    "category": "soil",
+    "text_chunks": [
+      "Cover crops provide multiple ecosystem services including erosion control, soil organic matter accumulation, nutrient cycling, water retention improvement, and weed suppression. Their effectiveness varies with species selection, climate, and management.",
+      "Cover crop biomass inputs increase soil organic carbon over time. Long-term studies report SOC increases of 0.1–0.3 Mg C/ha/yr under cover cropping, with the magnitude depending on initial SOC levels, cover crop species, and climate.",
+      "Cover crops improve soil water dynamics through both mulch effects (reducing evaporation) and root-created macropores (improving infiltration). In semi-arid systems, cover crop management must balance water-use competition with soil protection benefits."
+    ]
+  },
+  {
+    "document_id": "EVD-013",
+    "title": "The Assessment Report on Land Degradation and Restoration",
+    "source": "IPBES",
+    "year": 2018,
+    "authors": "IPBES",
+    "topic": "Land Degradation",
+    "environmental_variables": ["land_degradation", "biodiversity", "soil_organic_carbon", "deforestation"],
+    "evidence_type": "assessment_report",
+    "category": "land",
+    "text_chunks": [
+      "Land degradation undermines the well-being of at least 3.2 billion people. Agricultural expansion and intensification are primary drivers, contributing to soil erosion, nutrient depletion, and biodiversity loss.",
+      "Deforestation and conversion of natural habitats to agriculture account for a substantial portion of global biodiversity loss. Species-rich tropical and subtropical ecosystems are disproportionately affected.",
+      "Ecosystem restoration, including revegetation of degraded lands, can recover significant biodiversity and ecosystem function. However, restored ecosystems typically do not fully replicate the biodiversity of undisturbed reference systems within monitoring timeframes."
+    ]
+  },
+  {
+    "document_id": "EVD-014",
+    "title": "Water harvesting for rainfed agriculture in semi-arid zones",
+    "source": "FAO",
+    "year": 2021,
+    "authors": "FAO Land and Water Division",
+    "topic": "Water Management",
+    "environmental_variables": ["rainfall", "water_availability", "soil_moisture", "drought"],
+    "evidence_type": "technical_report",
+    "category": "climate",
+    "text_chunks": [
+      "In-situ water harvesting techniques, including contour bunding, tied ridges, and micro-catchments, can increase effective rainfall use by 20–50% in semi-arid agricultural systems. These techniques concentrate and retain rainfall within the root zone.",
+      "Combining water harvesting with mulching and reduced tillage creates synergistic benefits for soil moisture retention. Mulch reduces evaporative losses while improved soil structure from reduced tillage enhances infiltration.",
+      "Drought resilience in semi-arid agricultural systems depends on both water capture efficiency and soil water storage capacity. Increasing soil organic carbon improves water holding capacity, complementing physical water harvesting structures."
+    ]
+  },
+  {
+    "document_id": "EVD-015",
+    "title": "The role of intercropping in biodiversity conservation within agricultural landscapes",
+    "source": "Agriculture, Ecosystems & Environment",
+    "year": 2019,
+    "authors": "Beillouin, D. et al.",
+    "topic": "Intercropping",
+    "environmental_variables": ["crop_diversity", "biodiversity", "habitat_diversity", "soil_biology"],
+    "evidence_type": "meta_analysis",
+    "category": "land",
+    "text_chunks": [
+      "Meta-analysis of intercropping studies shows that polyculture systems support 30% higher arthropod diversity and 25% higher microbial diversity compared to monocultures, largely through increased structural complexity and resource heterogeneity.",
+      "Intercropping with flowering species provides continuous floral resources that support pollinator populations across seasons. This temporal complementarity addresses the resource gaps that occur in monoculture systems.",
+      "Soil biological activity, measured as microbial biomass carbon and enzymatic activity, is consistently higher under intercropping compared to sole crops. Root exudate diversity from multiple crop species stimulates diverse microbial communities."
+    ]
+  },
+  {
+    "document_id": "EVD-016",
+    "title": "Pollution impacts on biodiversity in agricultural ecosystems",
+    "source": "Environment International",
+    "year": 2020,
+    "authors": "Dudley, N. and Alexander, S.",
+    "topic": "Pollution Effects",
+    "environmental_variables": ["pollution", "biodiversity", "soil_biology", "species_richness"],
+    "evidence_type": "review",
+    "category": "human-impact",
+    "text_chunks": [
+      "Agricultural pollution from pesticides, excess fertilizers, and industrial runoff adversely affects non-target organisms including soil invertebrates, aquatic species, and pollinators. Chronic exposure to sub-lethal concentrations can disrupt reproduction, behaviour, and population viability.",
+      "Nutrient pollution from excess nitrogen and phosphorus contributes to eutrophication of waterways and soil acidification. These changes alter species composition, favouring nutrient-tolerant species at the expense of biodiversity.",
+      "Reducing pollution loads through integrated pest management, precision fertilizer application, and buffer strips between agricultural land and water bodies can significantly reduce ecological impacts while maintaining agricultural productivity."
+    ]
+  },
+  {
+    "document_id": "EVD-017",
+    "title": "Deforestation and global biodiversity loss",
+    "source": "Annual Review of Ecology, Evolution, and Systematics",
+    "year": 2022,
+    "authors": "Betts, M.G. et al.",
+    "topic": "Deforestation Impact",
+    "environmental_variables": ["deforestation", "habitat_diversity", "species_richness", "soil_organic_carbon"],
+    "evidence_type": "review",
+    "category": "human-impact",
+    "text_chunks": [
+      "Deforestation is a primary driver of terrestrial biodiversity loss, particularly in tropical regions. Forest clearing eliminates habitat for forest-dependent species and disrupts ecosystem processes including nutrient cycling and hydrological regulation.",
+      "Even partial deforestation that leaves forest fragments can cause species loss through edge effects, increased exposure to wind and temperature extremes, and reduced interior habitat area. Species with specialized habitat requirements are most vulnerable.",
+      "Soil organic carbon stocks decline rapidly following deforestation due to reduced organic matter inputs, increased decomposition rates from changed microclimate, and erosion of exposed topsoil. Recovery of SOC following reforestation occurs much more slowly than the initial loss."
+    ]
+  },
+  {
+    "document_id": "EVD-018",
+    "title": "Ecosystem restoration as a strategy for biodiversity recovery",
+    "source": "Nature Ecology & Evolution",
+    "year": 2020,
+    "authors": "Strassburg, B.B.N. et al.",
+    "topic": "Ecosystem Restoration",
+    "environmental_variables": ["biodiversity", "habitat_diversity", "soil_organic_carbon", "native_vegetation"],
+    "evidence_type": "model",
+    "category": "biodiversity",
+    "text_chunks": [
+      "Restoration of degraded ecosystems can recover substantial biodiversity, although the rate and completeness of recovery depend on degradation severity, restoration methods, and landscape context. Active restoration typically yields faster biodiversity gains than passive recovery.",
+      "Prioritizing restoration in areas that maximise connectivity between existing habitat patches can amplify biodiversity benefits beyond the restored area itself by enabling species movement and genetic exchange.",
+      "Native vegetation restoration in agricultural landscapes creates multifunctional areas that simultaneously support biodiversity, improve soil health, regulate water flows, and provide ecosystem services to adjacent farmland."
+    ]
+  },
+  {
+    "document_id": "EVD-019",
+    "title": "The global status of soil resources",
+    "source": "FAO / ITPS",
+    "year": 2015,
+    "authors": "FAO and Intergovernmental Technical Panel on Soils",
+    "topic": "Soil Degradation",
+    "environmental_variables": ["soil_organic_carbon", "soil_moisture", "land_degradation", "nutrient_cycling"],
+    "evidence_type": "assessment_report",
+    "category": "soil",
+    "text_chunks": [
+      "Approximately 33% of global soils are moderately to highly degraded due to erosion, salinization, compaction, acidification, and chemical pollution. Degraded soils have reduced capacity to store carbon, retain water, and support biological activity.",
+      "Soil moisture regimes are changing globally due to climate change and land use modifications. In semi-arid regions, increasing temperatures and variable precipitation are reducing effective soil moisture availability, with consequences for vegetation productivity and soil biology.",
+      "Sustainable soil management practices that maintain or increase soil organic matter are essential for preserving soil functions. Minimum disturbance, permanent soil cover, and crop diversification are key principles for reducing soil degradation."
+    ]
+  },
+  {
+    "document_id": "EVD-020",
+    "title": "Water-Soil-Vegetation dynamics in dryland ecosystems",
+    "source": "Ecohydrology",
+    "year": 2020,
+    "authors": "Rodriguez-Iturbe, I. et al.",
+    "topic": "Dryland Ecology",
+    "environmental_variables": ["rainfall", "soil_moisture", "vegetation", "water_availability"],
+    "evidence_type": "review",
+    "category": "climate",
+    "text_chunks": [
+      "In dryland ecosystems, water availability is the primary limiting factor for biological processes. Rainfall pulses drive episodic vegetation growth, microbial activity, and nutrient mineralization, creating boom-bust dynamics that shape ecosystem structure.",
+      "Soil moisture acts as a critical link between climate and ecological processes. The soil moisture regime determines vegetation type, root distribution, microbial activity, and nutrient availability throughout the soil profile.",
+      "Vegetation feedbacks on the water cycle include rainfall interception, transpiration, and modification of soil hydraulic properties through root channels. Loss of vegetation cover in drylands can initiate positive feedback loops that accelerate desertification."
+    ]
+  }
+]

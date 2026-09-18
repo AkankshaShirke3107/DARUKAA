@@ -1,9 +1,31 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import StatusIndicator from '@/components/ui/StatusIndicator';
-import { assessmentHistory } from '@/data/mock-history';
+import { assessmentHistory as mockHistory } from '@/data/mock-history';
 import Link from 'next/link';
+import { listAssessments } from '@/lib/api';
 
 export default function HistoryPage() {
+  const [history, setHistory] = useState(mockHistory);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchHistory() {
+      try {
+        const data = await listAssessments() as any[];
+        if (!cancelled && data?.length) {
+          setHistory([...data, ...mockHistory]);
+        }
+      } catch {
+        // Keep mock data
+      }
+    }
+    fetchHistory();
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <div>
       <SectionHeader
@@ -31,7 +53,7 @@ export default function HistoryPage() {
         </div>
 
         {/* Rows */}
-        {assessmentHistory.map((record) => (
+        {history.map((record) => (
           <Link
             key={record.id}
             href="/state"

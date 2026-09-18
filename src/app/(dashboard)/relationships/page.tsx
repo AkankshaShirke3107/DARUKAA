@@ -1,23 +1,24 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import StatusIndicator from '@/components/ui/StatusIndicator';
 import {
-  relationshipNodes,
-  relationshipEdges,
+  relationshipNodes as mockNodes,
+  relationshipEdges as mockEdges,
   getCategoryColor,
   type GraphNode,
 } from '@/data/mock-relationships';
+import { useAssessment } from '@/context/AssessmentContext';
 
-function NodeDetail({ node, onClose }: { node: GraphNode; onClose: () => void }) {
-  const connectedEdges = relationshipEdges.filter(
+function NodeDetail({ node, onClose, edges, nodes }: { node: GraphNode; onClose: () => void; edges: typeof mockEdges; nodes: typeof mockNodes }) {
+  const connectedEdges = edges.filter(
     (e) => e.source === node.id || e.target === node.id
   );
   const connectedIds = new Set(
     connectedEdges.flatMap((e) => [e.source, e.target]).filter((id) => id !== node.id)
   );
-  const connectedNodes = relationshipNodes.filter((n) => connectedIds.has(n.id));
+  const connectedNodes = nodes.filter((n) => connectedIds.has(n.id));
 
   return (
     <div className="border border-border rounded-[var(--radius-md)] p-4 bg-bg-secondary">
@@ -77,6 +78,23 @@ function NodeDetail({ node, onClose }: { node: GraphNode; onClose: () => void })
 }
 
 export default function RelationshipsPage() {
+  const { result, backendAvailable } = useAssessment();
+
+  // Use API data if available, otherwise fall back to mock
+  const relationshipNodes = useMemo(() => {
+    if (backendAvailable && result?.relationships?.nodes?.length) {
+      return result.relationships.nodes as GraphNode[];
+    }
+    return mockNodes;
+  }, [backendAvailable, result]);
+
+  const relationshipEdges = useMemo(() => {
+    if (backendAvailable && result?.relationships?.edges?.length) {
+      return result.relationships.edges;
+    }
+    return mockEdges;
+  }, [backendAvailable, result]);
+
   const svgRef = useRef<SVGSVGElement>(null);
   const [selected, setSelected] = useState<GraphNode | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
@@ -106,7 +124,7 @@ export default function RelationshipsPage() {
   const isConnected = (nodeId: string) => {
     if (!hovered) return false;
     return relationshipEdges.some(
-      (e) =>
+      (e: any) =>
         (e.source === hovered && e.target === nodeId) ||
         (e.target === hovered && e.source === nodeId)
     );
@@ -277,7 +295,7 @@ export default function RelationshipsPage() {
         {/* Detail panel */}
         <div>
           {selected ? (
-            <NodeDetail node={selected} onClose={() => setSelected(null)} />
+            <NodeDetail node={selected} onClose={() => setSelected(null)} edges={relationshipEdges} nodes={relationshipNodes} />
           ) : (
             <div className="border border-border rounded-[var(--radius-md)] p-4 bg-bg-secondary">
               <div className="label-xs mb-3">Variable detail</div>

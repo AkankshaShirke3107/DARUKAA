@@ -1,8 +1,11 @@
+'use client';
+
 import SectionHeader from '@/components/ui/SectionHeader';
 import StatusIndicator from '@/components/ui/StatusIndicator';
-import { interventions } from '@/data/mock-interventions';
+import { interventions as mockInterventions } from '@/data/mock-interventions';
 import { ArrowUp, ArrowDown, Minus } from 'lucide-react';
 import Link from 'next/link';
+import { useAssessment } from '@/context/AssessmentContext';
 
 const timeHorizonLabels = {
   short: 'Short term (0–6 months)',
@@ -10,7 +13,7 @@ const timeHorizonLabels = {
   long: 'Long term (2–5 years)',
 };
 
-function InterventionCard({ intervention, index }: { intervention: typeof interventions[0]; index: number }) {
+function InterventionCard({ intervention, index }: { intervention: any; index: number }) {
   return (
     <div className="border border-border rounded-[var(--radius-md)] bg-bg-secondary">
       {/* Header */}
@@ -47,7 +50,7 @@ function InterventionCard({ intervention, index }: { intervention: typeof interv
       <div className="border-t border-border px-4 sm:px-5 py-4">
         <div className="label-xs mb-3">Projected impacts</div>
         <div className="space-y-1.5">
-          {intervention.impacts.map((impact) => (
+          {intervention.impacts.map((impact: any) => (
             <div key={impact.metric} className="flex items-center justify-between text-[12px]">
               <span className="text-text-secondary">{impact.metric}</span>
               <div className="flex items-center gap-1.5">
@@ -74,10 +77,10 @@ function InterventionCard({ intervention, index }: { intervention: typeof interv
       {/* Meta */}
       <div className="border-t border-border px-4 sm:px-5 py-3 flex items-center justify-between text-[11px]">
         <span className="text-text-muted">
-          {timeHorizonLabels[intervention.timeHorizon]}
+          {timeHorizonLabels[intervention.timeHorizon as keyof typeof timeHorizonLabels]}
         </span>
         <div className="flex gap-1.5">
-          {intervention.supportingEvidence.map((id) => (
+          {intervention.supportingEvidence.map((id: string) => (
             <Link
               key={id}
               href="/knowledge"
@@ -93,6 +96,11 @@ function InterventionCard({ intervention, index }: { intervention: typeof interv
 }
 
 export default function InterventionsPage() {
+  const { result, backendAvailable } = useAssessment();
+  const interventions = (backendAvailable && result?.recommendations?.length)
+    ? result.recommendations
+    : mockInterventions;
+
   return (
     <div>
       <SectionHeader

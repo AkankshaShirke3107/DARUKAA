@@ -1,7 +1,10 @@
+'use client';
+
 import SectionHeader from '@/components/ui/SectionHeader';
 import { Metric, MetricGroup } from '@/components/ui/Metric';
 import { environmentalState } from '@/data/mock-environmental-state';
 import StatusIndicator from '@/components/ui/StatusIndicator';
+import { useAssessment } from '@/context/AssessmentContext';
 
 function getOverallStatus(metrics: { status?: string }[]): 'good' | 'moderate' | 'poor' | 'critical' {
   const statuses = metrics.map((m) => m.status).filter(Boolean);
@@ -12,6 +15,15 @@ function getOverallStatus(metrics: { status?: string }[]): 'good' | 'moderate' |
 }
 
 export default function StatePage() {
+  const { result, backendAvailable } = useAssessment();
+
+  // Use API data if available, otherwise fall back to mock
+  const dimensions = (backendAvailable && result?.environmental_state?.length)
+    ? result.environmental_state
+    : environmentalState;
+
+  const assessmentId = result?.assessment_id || 'ASM-001';
+
   return (
     <div>
       <SectionHeader
@@ -19,7 +31,7 @@ export default function StatePage() {
         subtitle="Current ecological conditions inferred from the submitted observations."
         actions={
           <div className="flex items-center gap-3">
-            <span className="text-[11px] text-text-muted mono">ASM-001</span>
+            <span className="text-[11px] text-text-muted mono">{assessmentId}</span>
             <StatusIndicator status="poor" label="Under stress" />
           </div>
         }
@@ -43,13 +55,13 @@ export default function StatePage() {
 
       {/* Dimension grids */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {environmentalState.map((dimension) => (
+        {dimensions.map((dimension) => (
           <MetricGroup
             key={dimension.id}
             title={dimension.title}
             columns={dimension.metrics.length >= 4 ? 2 : dimension.metrics.length}
           >
-            {dimension.metrics.map((metric) => (
+            {dimension.metrics.map((metric: any) => (
               <Metric
                 key={metric.label}
                 label={metric.label}
@@ -75,7 +87,7 @@ export default function StatePage() {
         </div>
         <div className="text-right shrink-0">
           <div className="label-xs mb-2">Overall status</div>
-          <StatusIndicator status={getOverallStatus(environmentalState.flatMap((d) => d.metrics))} size="md" />
+          <StatusIndicator status={getOverallStatus(dimensions.flatMap((d) => d.metrics))} size="md" />
         </div>
       </div>
     </div>
