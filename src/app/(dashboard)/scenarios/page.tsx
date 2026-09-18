@@ -7,6 +7,9 @@ import {
   computeScenarioResults,
   type ScenarioResult,
 } from '@/data/mock-scenarios';
+import { useAssessment } from '@/context/AssessmentContext';
+import { analyzeScenario } from '@/lib/api';
+import { useEffect } from 'react';
 
 function ScenarioSlider({
   param,
@@ -99,6 +102,7 @@ function ResultRow({ result }: { result: ScenarioResult }) {
 }
 
 export default function ScenariosPage() {
+  const { result, backendAvailable } = useAssessment();
   const [params, setParams] = useState<Record<string, number>>(() => {
     const initial: Record<string, number> = {};
     scenarioParameters.forEach((p) => {
@@ -107,7 +111,43 @@ export default function ScenariosPage() {
     return initial;
   });
 
-  const results = useMemo(() => computeScenarioResults(params), [params]);
+  const [results, setResults] = useState<ScenarioResult[]>(computeScenarioResults(params));
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  useEffect(() => {
+    if (!backendAvailable || !result?.assessment_id) {
+      setResults(computeScenarioResults(params));
+      return;
+    }
+
+    const abortController = new AbortController();
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const fetchScenario = async () => {
+      setIsAnalyzing(true);
+      try {
+        const response = await analyzeScenario({
+          assessment_id: result.assessment_id,
+          parameters: params,
+        });
+        setResults((response as any).scenario_results);
+      } catch (err: any) {
+        if (err.name !== 'AbortError') {
+          console.error('Scenario API failed:', err);
+          setResults(computeScenarioResults(params));
+        }
+      } finally {
+        setIsAnalyzing(false);
+      }
+    };
+
+    timeoutId = setTimeout(fetchScenario, 300);
+
+    return () => {
+      clearTimeout(timeoutId);
+      abortController.abort();
+    };
+  }, [params, backendAvailable, result]);
 
   const hasChanges = scenarioParameters.some((p) => params[p.id] !== p.current);
 
@@ -161,9 +201,17 @@ export default function ScenariosPage() {
               <span className="w-10 text-[10px] text-text-muted uppercase tracking-wider">Delta</span>
             </div>
           </div>
-          <div className="px-4 sm:px-5 pb-4">
-            {results.map((result) => (
-              <ResultRow key={result.metric} result={result} />
+          <div className="px-4 sm:px-5 pb-4 relative min-h-[200px]">
+            {isAnalyzing && (
+              <div className="absolute inset-0 bg-bg-secondary/50 backdrop-blur-sm flex items-center justify-center z-10">
+                <div className="flex flex-col items-center">
+                  <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin mb-2" />
+                  <span className="text-[11px] text-text-muted">Analyzing scenario...</span>
+                </div>
+              </div>
+            )}
+            {results.map((r) => (
+              <ResultRow key={r.metric} result={r} />
             ))}
           </div>
 

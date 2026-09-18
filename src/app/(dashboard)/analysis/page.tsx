@@ -12,6 +12,7 @@ import {
 } from '@/data/mock-analysis';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useAssessment } from '@/context/AssessmentContext';
+import { sendConversationMessage } from '@/lib/api';
 
 function ObservationRow({ obs }: { obs: any }) {
   return (
@@ -46,7 +47,8 @@ function ReasoningArrow() {
 
 export default function AnalysisPage() {
   const { result, backendAvailable } = useAssessment();
-  const [selectedIrrigation, setSelectedIrrigation] = useState<string | null>(null);
+  const [activeConversation, setActiveConversation] = useState<any>(null);
+  const [isSending, setIsSending] = useState(false);
   const [expandedInteraction, setExpandedInteraction] = useState<number>(0);
 
   // Use API data if available, otherwise fall back to mock
@@ -203,50 +205,57 @@ export default function AnalysisPage() {
         {/* AI Scientist panel */}
         <div className="border border-border rounded-[var(--radius-md)] bg-bg-secondary p-4 h-fit sticky top-10">
           <div className="label-sm mb-4">AI ENVIRONMENTAL SCIENTIST</div>
-          <p className="text-[13px] text-text-tertiary leading-relaxed mb-4">
-            {scientistConversation.message}
-          </p>
-          <div className="border-t border-border pt-4">
-            <p className="text-[13px] text-text-secondary mb-3">
-              {scientistConversation.question}
-            </p>
-            <div className="space-y-2">
-              {scientistConversation.options?.map((opt: any) => (
-                <button
-                  key={opt.value}
-                  onClick={() => setSelectedIrrigation(opt.value)}
-                  className={`w-full text-left text-[13px] px-3 py-2 rounded-[var(--radius-sm)] border transition-default ${
-                    selectedIrrigation === opt.value
-                      ? 'border-border-accent bg-accent-subtle text-accent-hover'
-                      : 'border-border text-text-secondary hover:border-border-emphasis hover:bg-bg-hover'
-                  }`}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <span
-                      className={`inline-block w-3 h-3 rounded-full border ${
-                        selectedIrrigation === opt.value
-                          ? 'border-accent bg-accent'
-                          : 'border-text-muted'
-                      }`}
-                    >
-                      {selectedIrrigation === opt.value && (
-                        <span className="block w-1.5 h-1.5 rounded-full bg-bg-primary m-[2.5px]" />
-                      )}
-                    </span>
-                    {opt.label}
-                  </span>
-                </button>
-              ))}
-            </div>
-            {selectedIrrigation && (
-              <div className="mt-4 pt-3 border-t border-border">
-                <p className="text-[12px] text-text-tertiary leading-relaxed">
-                  With rain-fed conditions confirmed, water stress is the primary driver of
-                  biodiversity decline in this system. The analysis now weights water-dependent
-                  ecological pathways more heavily.
-                </p>
+          <div className="relative">
+            {isSending && (
+              <div className="absolute inset-0 bg-bg-secondary/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded">
+                <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
               </div>
             )}
+            
+            <p className="text-[13px] text-text-tertiary leading-relaxed mb-4">
+              {activeConversation ? activeConversation.message : scientistConversation.message}
+            </p>
+            
+            {((activeConversation ? activeConversation.question : scientistConversation.question) || (activeConversation ? activeConversation.options?.length : scientistConversation.options?.length)) ? (
+              <div className="border-t border-border pt-4">
+                {(activeConversation ? activeConversation.question : scientistConversation.question) && (
+                  <p className="text-[13px] text-text-secondary mb-3">
+                    {activeConversation ? activeConversation.question : scientistConversation.question}
+                  </p>
+                )}
+                
+                <div className="space-y-2">
+                  {(activeConversation ? activeConversation.options : scientistConversation.options)?.map((opt: any) => (
+                    <button
+                      key={opt.value}
+                      disabled={isSending}
+                      onClick={async () => {
+                        if (!backendAvailable) return;
+                        setIsSending(true);
+                        try {
+                          const response = await sendConversationMessage({
+                            message: opt.label,
+                            assessment_id: result?.assessment_id,
+                            conversation_id: activeConversation?.conversation_id
+                          });
+                          setActiveConversation(response);
+                        } catch (err) {
+                          console.error('Conversation API failed:', err);
+                        } finally {
+                          setIsSending(false);
+                        }
+                      }}
+                      className="w-full text-left text-[13px] px-3 py-2 rounded-[var(--radius-sm)] border border-border text-text-secondary hover:border-border-emphasis hover:bg-bg-hover transition-default disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="inline-flex items-center gap-2">
+                        <span className="inline-block w-3 h-3 rounded-full border border-text-muted" />
+                        {opt.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
